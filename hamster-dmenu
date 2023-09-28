@@ -35,7 +35,7 @@ declare -A ham=(
   [gui]="${hamster}"
 )
 
-entries=$(${ham[list]})
+entries=$(exec ${ham[list]})
 
 [ -n "$menu_prompt" ] && _p="$menu_prompt_param"
 
@@ -52,14 +52,14 @@ esac
 activity=$(echo "${entries}" | ${menu} $_p "$_pr" "$@") || exit 0
 
 case "${activity}" in
-  -)
-    ${ham[stop]}
+  --)
+    exec ${ham[stop]}
     ;;
   /)
-    ${ham[gui]}
+    exec ${ham[gui]}
     ;;
   *)
-    ${ham[start]} "${activity}"
+    exec ${ham[start]} "${activity}"
 esac
 
 
