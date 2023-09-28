@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# https://github.com/cptMikky/hamster-dmenu
+# https://github.com/jficz/hamster-dmenu
 #
 
 function default_menu() {
