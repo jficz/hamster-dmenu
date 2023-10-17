@@ -5,7 +5,7 @@
 
 function default_menu() {
   if [ -n "$WAYLAND_DISPLAY" ]; then
-    echo "wofi --dmenu"
+    echo "fuzzel --dmenu"
   else
     echo "dmenu"
   fi
@@ -21,9 +21,9 @@ menu_prompt_param="-p"
 EOF
 }
 
-confhome=${XDG_CONFIG_HOME:-$HOME/.config/}
+confhome="${XDG_CONFIG_HOME:-$HOME/.config}/"
 [ -d "$confhome" ] || confhome="$HOME/."
-conf="${confhome}hamster-dmenu/hamster-dmenu.conf"
+conf="${confhome}/hamster-dmenu/hamster-dmenu.conf"
 [ -f $conf ] || (mkdir -p $(dirname $conf); defaults)
 source $conf
 
@@ -42,7 +42,7 @@ entries=$(exec ${ham[list]})
 _pr=""
 case "$menu_prompt" in
   current) 
-    _pr="$(${ham[current]})"
+    _pr="$(${ham[current]}) >> "
     ;;
   custom)
     _pr="$menu_prompt_text"
@@ -61,7 +61,3 @@ case "${activity}" in
   *)
     exec ${ham[start]} "${activity}"
 esac
-
-
-
-
